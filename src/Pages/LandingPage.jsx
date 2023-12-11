@@ -46,39 +46,7 @@ const LandingPage = () => {
                   alt="logo"
                 />
               </div>
-              <div className="flex items-center">
-                <ul
-                  id="list"
-                  className={`${
-                    menu ? "" : "hidden"
-                  } p-2 border-r bg-white absolute rounded top-0 left-0 right-0 shadow mt-16 md:mt-16`}
-                >
-                  <li className="flex cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                    <a href="javascript:void(0)">
-                      <span className="ml-2 font-bold">Products</span>
-                    </a>
-                  </li>
-                </ul>
-                <div className="xl:hidden">
-                  <img
-                    id="open"
-                    className={` ${menu ? "hidden" : ""} close-m-menu`}
-                    onClick={() => setMenu(!menu)}
-                    src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_searchbar_Svg1.svg"
-                    alt="menu"
-                  />
-                  <div
-                    id="close"
-                    className={` ${menu ? "" : "hidden"} close-m-menu`}
-                    onClick={() => setMenu(!menu)}
-                  >
-                    <img
-                      src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_searchbar_Svg2.svg"
-                      alt="cross"
-                    />
-                  </div>
-                </div>
-              </div>
+              <div className="flex items-center"></div>
             </div>
           </nav>
           <nav
@@ -100,15 +68,7 @@ const LandingPage = () => {
             </div>
             <div className="w-5/6">
               <div className="flex items-center justify-end">
-                <div className="pl-40">
-                  <button
-                    role="button"
-                    aria-label="live chat"
-                    className="focus:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 hover:bg-indigo-600 text-white px-6 py-2 font-semibold rounded focus:outline-none"
-                  >
-                    Live Chat
-                  </button>
-                </div>
+                <div className="pl-40"></div>
               </div>
             </div>
           </nav>
@@ -169,7 +129,7 @@ const LandingPage = () => {
                     <button
                       type="button"
                       onClick={handleGenerateQRCode}
-                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                      className="text-white bg-blue-700  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
                       Generate QR Code
                     </button>

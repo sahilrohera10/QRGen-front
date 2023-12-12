@@ -1,10 +1,9 @@
 import react, { useState } from "react";
 import Lottie from "lottie-react";
 import qrannimate from "../Components/qrgif.json";
+import axios from "axios";
 
 const LandingPage = () => {
-  const [menu, setMenu] = useState(false);
-
   const [data, setData] = useState("");
   const [qrCode, setQRCode] = useState("");
 
@@ -27,24 +26,37 @@ const LandingPage = () => {
 
     const result = await response.json();
     return result.qrCode;
+    // https://qrgen-yr8k.onrender.com
+  };
+
+  const handleDownload = () => {
+    // Create a temporary link element
+    const downloadLink = document.createElement("a");
+    downloadLink.href = qrCode;
+    downloadLink.download = "qrcode.png"; // Specify the desired file name
+
+    // Trigger a click event on the link to start the download
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
   };
 
   return (
     <div>
       <section>
         <div className="w-full relative pb-10 px-6 xl:px-0">
-          <img
-            className="absolute w-full inset-0 h-full object-cover object-center"
-            src="https://cdn.tuk.dev/assets/templates/weCare/hero2-bg.png"
-            alt="we care family"
-          />
           <nav className="lg:hidden relative z-40">
             <div className="flex py-6 justify-between items-center px-4">
               <div>
-                <img
-                  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_searchbar_Svg3.svg"
-                  alt="logo"
-                />
+                <h1
+                  style={{
+                    fontSize: "40px",
+                    fontWeight: "700",
+                    color: "#4338CA",
+                  }}
+                >
+                  QR Gen
+                </h1>
               </div>
               <div className="flex items-center"></div>
             </div>
@@ -100,31 +112,53 @@ const LandingPage = () => {
                 }}
               >
                 {qrCode ? (
-                  <img
-                    style={{
-                      width: "300px",
-                      height: "290px",
-                      borderRadius: "20px",
-                    }}
-                    src={qrCode}
-                    alt="Generated QR Code"
-                  />
+                  <>
+                    <img
+                      style={{
+                        width: "250px",
+                        height: "250px",
+                        borderRadius: "20px",
+                        margin: "auto",
+                      }}
+                      src={qrCode}
+                      alt="Generated QR Code"
+                    />
+                    <button
+                      type="button"
+                      style={{ background: "#4338CA" }}
+                      onClick={handleDownload}
+                      className="text-white  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                    >
+                      Download
+                    </button>
+                    <button
+                      type="button"
+                      style={{ background: "#4338CA", marginLeft: "10px" }}
+                      onClick={() => window.location.reload()}
+                      className="text-white  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                    >
+                      Regenerate
+                    </button>
+                  </>
                 ) : (
                   <div style={{ marginTop: "50px" }}>
-                    <label
-                      for="message"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Enter the data
-                    </label>
-                    <textarea
-                      value={data}
-                      onChange={(e) => setData(e.target.value)}
-                      id="message"
-                      rows="4"
-                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Paste here.."
-                    ></textarea>
+                    <div>
+                      <label
+                        for="message"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Enter the data
+                      </label>
+                      <textarea
+                        value={data}
+                        onChange={(e) => setData(e.target.value)}
+                        id="message"
+                        rows="4"
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Paste here.."
+                      ></textarea>
+                    </div>
+
                     <br />
                     <button
                       type="button"
